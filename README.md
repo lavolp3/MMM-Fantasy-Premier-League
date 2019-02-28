@@ -10,7 +10,7 @@ Display current standing and latest points.
 ## Install
 
 1. Navigate into your MagicMirror modules folder and execute
-    git clone this repository
+    git clone https://github.com/Wuzoink/MMM-Fantasy-Premier-League
 2. Enter the MMM-Fantasy-Premier-League directory and execute npm install.
 3. Visit https://fantasy.premierleague.com. Enter selected league and look at the URL:
     https://fantasy.premierleague.com/a/leagues/standings/{LEAGUE ID}/classic
@@ -84,6 +84,3 @@ Yellow gameweek = ongoing gameweek!
 
 ![](Screenshots/Screenshot4.png)
 ![](Screenshots/Screenshot5.png)
-
-
-
