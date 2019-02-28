@@ -1,0 +1,34 @@
+
+.FPL-td-th {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: left;
+}
+
+.FPL-left-boarder {
+	padding-left: 8px;
+	border-left: 1px solid #666;
+}
+
+.FPL {
+	text-align: left;
+	padding-right: 20px;
+}
+
+.FPL-points{
+	text-align: right;
+}
+
+.GameWeek-done {
+	text-align: right;
+	color: #a3ea80;
+	font-size: 80%;
+	padding: 0;
+}
+
+.GameWeek-not-done {
+	text-align: right;
+	color: #f8dd70;
+	font-size: 80%;
+	padding: 0;
+}
