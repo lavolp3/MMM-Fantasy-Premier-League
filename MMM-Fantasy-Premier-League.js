@@ -154,7 +154,7 @@ Module.register("MMM-Fantasy-Premier-League", {
 
 			if(this.config.showTotalPoints){
 				var headerTotalPoints = document.createElement("th");
-				headerTotalPoints.className = "FPL-td-th light";
+				headerTotalPoints.className = "FPL-td-th-total light";
 				headerTotalPoints.innerHTML = "Total";
 				row.appendChild(headerTotalPoints);
 			}
