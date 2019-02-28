@@ -11,7 +11,7 @@ Display current standings and latest points.
 #### Step 1
 Navigate into your MagicMirror modules folder and execute: 
 ```js
-git clone https://github.com/Wuzoink/MMM-Fantasy-Premier-League
+git clone https://github.com/Wuz0ink/MMM-Fantasy-Premier-League
 ```
 #### Step 2
 Enter the MMM-Fantasy-Premier-League directory and execute:
