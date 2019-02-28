@@ -3,18 +3,45 @@
 This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/).
 
 This module displays your Fantasy Premier League! 
-Display current standing and latest points.
+Display current standings and latest points.
 
 
 
 ## Install
+#### Step 1
+Navigate into your MagicMirror modules folder and execute: 
+```js
+git clone https://github.com/Wuzoink/MMM-Fantasy-Premier-League
+```
+#### Step 2
+Enter the MMM-Fantasy-Premier-League directory and execute:
+```js
+npm install
+```
+#### Step 3
 
-1. Navigate into your MagicMirror modules folder and execute
-    git clone https://github.com/Wuzoink/MMM-Fantasy-Premier-League
-2. Enter the MMM-Fantasy-Premier-League directory and execute npm install.
-3. Visit https://fantasy.premierleague.com. Enter selected league and look at the URL:
-    https://fantasy.premierleague.com/a/leagues/standings/{LEAGUE ID}/classic
-4. Copy the {LEAGUE ID} and paste it in the config file under leagueIds.
+Add the following configuration block to the modules array in the `config/config.js` file:
+
+```js
+{
+    module: 'MMM-Fantasy-Premier-League',
+    position: 'left',
+    header: "Fantasy Premier League",
+    config: {
+     //   leagueIds: [
+     //   ],
+    }
+},
+```
+
+#### Step 4
+
+Visit https://fantasy.premierleague.com. Enter selected league and look at the URL:
+```js
+https://fantasy.premierleague.com/a/leagues/standings/{LEAGUE_ID}/classic
+```
+#### Step 3
+Copy the {LEAGUE ID} and paste it in the config file under leagueIds. Example below,
 
 ```js
 leagueIds: [
@@ -22,23 +49,8 @@ leagueIds: [
     {id: 226}  // Sweden
 ]
 ```
-![](Screenshots/Screenshot2.png)
 
-To use this module, add the following configuration block to the modules array in the `config/config.js` file:
-```js
-var config = {
-    modules: [
-        {
-            module: 'MMM-Fantasy-Premier-League',
-            position: 'left',
-            header: "Fantasy Premier League",
-            config: {
-                // configure
-            }
-        }
-    ]
-}
-```
+![](Screenshots/Screenshot2.png)
 
 Example config: 
 ```js
