@@ -28,6 +28,8 @@ Add the following configuration block to the modules array in the `config/config
     position: 'left',
     header: "Fantasy Premier League",
     config: {
+        password: '<YOUR_PASSWORD>',
+        username: '<YOUR_USERNAME>',
      //   leagueIds: [
      //   ],
     }
@@ -59,6 +61,8 @@ Example config:
     position: 'left',
     header: "Fantasy Premier League",
     config: {
+        password: '<YOUR_PASSWORD>',
+        username: '<YOUR_USERNAME>',
         leagueIds: [
             {id: 313},
         //  {id: {Another Id}},
@@ -72,6 +76,8 @@ Example config:
 
 | Option           | Default   | Description
 |------------------|-----------|-----------------------------------------
+| `password`       |           | *Not Optional* Password
+| `username`       |           | *Not Optional* Username or email
 | `leagueIds`      |           | *Optional* List of league ids
 | `updateInterval` |  21600000 | *Optional* How often should the module fetch?
 | `maxTeams`       |  10       | *Optional* How many teams should max be viewed in every league?
@@ -80,7 +86,7 @@ Example config:
 | `showPlayerRank` |  false    | *Optional* Display player rank
 | `showTotalPoints`|  true     | *Optional* Display total point of player in the current league
 | `showGwPoints`   |  true     | *Optional* Display latest or ongoing gameweek points
-| `gameWeekLabel`   | "Gameweek"| *Optional* If you want you can rename the Gameweek header("GW or whatever")
+| `gameWeekLabel`  | "Gameweek"| *Optional* If you want you can rename the Gameweek header("GW or whatever")
 | `showGameWeek`   |  true     | *Optional* Whether or not you want to display latest or ongoing gameweek
 | `truncateAfter`  |    5      | *Optional* A value > 0 will truncate league name/ player name/ team name at first space after <value> characters. 0 = no truncation
 
