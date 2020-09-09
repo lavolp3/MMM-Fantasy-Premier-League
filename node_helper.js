@@ -7,6 +7,7 @@
 
 var NodeHelper = require("node_helper");
 const fetch = require("node-fetch");
+const axios = require('axios');
 
 
 module.exports = NodeHelper.create({
@@ -88,22 +89,23 @@ module.exports = NodeHelper.create({
 			//var url = "https://fantasy.premierleague.com/drf/leagues-classic-standings/" + this.config.leagueIds[l].id;
 			var url = 'https://fantasy.premierleague.com/api/leagues-classic/' + this.config.leagueIds[l].id + '/standings';
 
-			fetch(url)
+
+            
+			axios.get(url)
 				.then(function(response){
-					console.log('getleagueData response code: ' + response.status);
-					if(response.status == 200){
+					//console.log('getleagueData response code: ' + response.status);
+					/*if(response.status == 200){
 						return response.json();
 					}else if(response.status == 403){
 						self.logout();
 						throw new Error;
-					}
-						
-				}).then(function(json){
-						self.processLeague(json);	
-						self.getEventData();
+                    }*/
+                    self.processLeague(JSON.parse(response));
+				    self.getEventData();
 					
 				}).catch(function(err){
-					console.log(self.name + " : getleagueData : " + err);
+                    console.log(self.name + " : getleagueData : " + err);
+                    self.logout();
 					self.scheduleUpdate();
 				});
 		}
@@ -118,11 +120,9 @@ module.exports = NodeHelper.create({
 		url = 'https://fantasy.premierleague.com/api/bootstrap-static/';
 		console.log('Fetching events for module: ' + this.name);
 
-		fetch(url)
+		axios.get(url)
 			.then(function(response){
-				return response.json();
-			}).then(function(json){
-				self.processGameweek(json);
+				self.processGameweek(JSON.parse(response));
 			}).catch(function(err){
 				console.log(self.name + " : getEventData : " + err);
 				self.scheduleUpdate();
