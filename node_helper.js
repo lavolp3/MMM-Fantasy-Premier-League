@@ -66,15 +66,15 @@ module.exports = NodeHelper.create({
 		var url = 'https://users.premierleague.com/accounts/logout/?app=plfpl-web&redirect_uri=https://fantasy.premierleague.com/';
 
 		fetch(url)
-				.then(function(response){
-					console.log('Logout response code: ' + response.status);
-					return response;
-				}).then(function(response){
-						self.login();
-				}).catch(function(err){
-					console.log(self.name + " : logout : " + err);
-					self.scheduleUpdate();
-				});
+			.then(function(response){
+				console.log('Logout response code: ' + response.status);
+				return response;
+			}).then(function(response){
+				self.login();
+			}).catch(function(err){
+				console.log(self.name + " : logout : " + err);
+				self.scheduleUpdate();
+			});
 	},
 
 	getleagueData: function() {
@@ -90,22 +90,19 @@ module.exports = NodeHelper.create({
 			var url = 'https://fantasy.premierleague.com/api/leagues-classic/' + this.config.leagueIds[l].id + '/standings';
 
 
-            
 			axios.get(url)
 				.then(function(response){
-					//console.log('getleagueData response code: ' + response.status);
-					/*if(response.status == 200){
-						return response.json();
+					console.log('getleagueData response code: ' + response.status);
+					if(response.status == 200){
+						self.processLeague(response.data);
+					    	self.getEventData();
 					}else if(response.status == 403){
 						self.logout();
 						throw new Error;
-                    }*/
-                    self.processLeague(JSON.parse(response));
-				    self.getEventData();
-					
+                    			}
 				}).catch(function(err){
-                    console.log(self.name + " : getleagueData : " + err);
-                    self.logout();
+					console.log(self.name + " : getleagueData : " + err);
+					self.logout();
 					self.scheduleUpdate();
 				});
 		}
@@ -122,7 +119,7 @@ module.exports = NodeHelper.create({
 
 		axios.get(url)
 			.then(function(response){
-				self.processGameweek(JSON.parse(response));
+				self.processGameweek(response.data);
 			}).catch(function(err){
 				console.log(self.name + " : getEventData : " + err);
 				self.scheduleUpdate();
@@ -147,14 +144,16 @@ module.exports = NodeHelper.create({
 		this.displayAndSchedule("gameweek", gameWeek);
 	},
 
+
 	processLeague: function(data) {
 
+		console.log("Processing league data...");
 		var leagueTeams = [];
 		var leagueName = data.league.name;
 		leagueName = this.truncate(leagueName);
 
 		var leagueId = data.league.id;
-		
+
 		for(team in data.standings.results){
 			var playerId = data.standings.results[team].id;
 			var teamName = data.standings.results[team].entry_name;
@@ -162,7 +161,7 @@ module.exports = NodeHelper.create({
 
 			var playerName = data.standings.results[team].player_name;
 			playerName = this.truncate(playerName);
-			
+
 			var rank = data.standings.results[team].rank;
 			var totalPoints = data.standings.results[team].total;
 			var gwPoints = data.standings.results[team].event_total;
@@ -198,13 +197,14 @@ module.exports = NodeHelper.create({
 	},
 
 	displayAndSchedule: function(notification, payload){
-	
 
 		if(notification == "league" && payload.length > 0){
+			console.log("Sending league data to Client: " + JSON.stringify(payload));
 			this.sendSocketNotification("MMM-Fantasy-Premier-League-LEAGUE", payload);
 		}
 
 		if(notification == "gameweek" && payload.length > 0){
+			console.log("Sending gameweek data to Client: " + JSON.stringify(payload));
 			this.sendSocketNotification("MMM-Fantasy-Premier-League-GAMEWEEK", payload);
 		}
 		this.scheduleUpdate();
